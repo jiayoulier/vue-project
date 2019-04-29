@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev1": "webpack",
     "dev": "webpack-dev-server",
     "dev2": "webpack-dev-server --open --port 3000 contentBase src --hot"
   },
