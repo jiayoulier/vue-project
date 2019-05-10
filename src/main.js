@@ -62,7 +62,7 @@ var store = new Vuex.Store({
             })
             localStorage.setItem('car', JSON.stringify(state.car))
         }
-    }, // this.$store.commit(')
+    }, // this.$store.commit('')
     getters: {
         getAllCount(state) {
             var c = 0;
