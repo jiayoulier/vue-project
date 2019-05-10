@@ -17,7 +17,8 @@ module.exports = {
     devServer: {
         open: true,
         port: 3000,
-        hot: true
+        hot: true,
+        // host: '172.20.10.2'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

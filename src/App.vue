@@ -1,6 +1,10 @@
 <template>
     <div class="app-container">
-        <mt-header fixed title="加油立儿--vue" class="app_header"></mt-header>
+        <mt-header fixed title="加油立儿--vue" class="app_header">
+            <span @click="goback" slot="left">
+                <mt-button icon="back" v-show="flag">返回</mt-button>
+            </span>
+        </mt-header>
 
         <transition>
             <router-view></router-view>
@@ -17,7 +21,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
             <router-link to="/shopcart" class="mui-tab-item-1" href="#tabbar-with-chat">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link to="/search" class="mui-tab-item-1" href="#tabbar-with-map">
@@ -35,9 +39,18 @@ export default {
     data() {
         return {
             // msg: '123'
+            flag: true
         }
     },
+    created() {
+        // console.log(this.$route)
+        this.flag = this.$route.path === '/home' ? false : true
+    },
     methods: {
+        goback() {
+            // console.log(this.$router)
+            this.$router.go(-1)
+        }
         // show() {
         //     // Toast('提示信息');
         //     // Toast({
@@ -48,6 +61,15 @@ export default {
         //     //     className: 'toast'
         //     // });
         // }
+    },
+    watch: {
+        $route: function(newVal) {
+            if(newVal.path === '/home') {
+                this.flag = false
+            } else {
+                this.flag = true
+            }
+        }
     }
 }
 </script>
